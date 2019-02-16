@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="write here!" />
+                android:hint="write here!" />
 
             <Button
                 android:id="@+id/submit"

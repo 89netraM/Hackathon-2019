@@ -35,6 +35,7 @@ public class RingerService extends Service {
 
         //TODO: Change to alarm response page
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("isAlarm", true);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
