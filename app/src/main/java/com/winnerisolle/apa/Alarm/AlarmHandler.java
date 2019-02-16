@@ -8,17 +8,16 @@ import android.os.SystemClock;
 
 public class AlarmHandler {
     private final AlarmManager alarmManager;
-    private final PendingIntent pendingIntent;
+    private final Context context;
 
     public AlarmHandler(Context context) {
+        this.context = context;
         alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-
-        Intent intent = new Intent(context, RingerService.class);
-        pendingIntent = PendingIntent.getService(context, 0, intent, 0);
     }
 
-    public void getActiveAlarms() {
-
+    public long getNextAlarm() {
+        AlarmManager.AlarmClockInfo info = alarmManager.getNextAlarmClock();
+        return info != null ? info.getTriggerTime() : -1;
     }
 
     public void setAlarmNow() {
@@ -28,6 +27,9 @@ public class AlarmHandler {
         setAlarm(SystemClock.elapsedRealtime() + millis);
     }
     private void setAlarm(long millis) {
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, millis, pendingIntent);
+        Intent intent = new Intent(context, RingerService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 1337, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME, millis, pendingIntent);
     }
 }
