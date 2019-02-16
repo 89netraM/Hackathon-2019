@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="200dp"
-        android:onClick="addNewStatus"
+        android:onClick="debugCreateNew"
         android:text="Add New"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

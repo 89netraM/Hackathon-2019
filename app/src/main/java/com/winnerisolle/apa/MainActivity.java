@@ -16,32 +16,25 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
-    public void addNewStatus(View v){
-        CardView cardView = new CardView(getApplicationContext());
-
-        LinearLayout lll = new LinearLayout(getApplicationContext());
-        TextView tv1 = new TextView(getApplicationContext());
-        tv1.setText("Hello Dude");
-        TextView tv2 = new TextView(getApplicationContext());
-        tv2.setText("Dude hello");
-
-        lll.setOrientation(LinearLayout.VERTICAL);
-
-        lll.addView(tv1);
-        lll.addView(tv2);
-        cardView.addView(lll);
-
+    public void debugCreateNew(View view){
+        View v = StatusDisplayer.addNewStatus(Calendar.getInstance().getTime(),"This is nice",getApplicationContext());
         LinearLayout ll = findViewById(R.id.statuslist);
-
-        ll.addView(cardView);
-        ll.addView(new Space(getApplicationContext()));
+        ll.addView(v);
+        Space s = new Space(getApplicationContext());
+        s.setMinimumHeight(30);
+        ll.addView(s);
     }
+
 }
