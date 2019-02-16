@@ -1,33 +1,13 @@
 package com.winnerisolle.apa;
 
-// Class for storage of user written updates
-
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
-
-
-@Entity(tableName = "Updates-table")
-public class Status {
-
-    @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = "Update");
-
-    long time;
+public class Status{
     String update;
+    String project;
+    long timeStamp;
 
-    Status(String update){
+    Status(long timeStamp,String project,String update){
         this.update = update;
-        time = System.currentTimeMillis();
-    }
-
-    String getStatus(){
-        return update;
-    }
-
-    long getTime(){
-        return time;
+        this.project = project;
+        this.timeStamp = timeStamp;
     }
 }
